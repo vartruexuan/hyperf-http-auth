@@ -159,9 +159,9 @@ class OptionalPackages
     {
         $defaultNamespace = $this->guessNamespace($name);
 
-        $namespace = $this->io->ask('<info>What is your namespace (Hyperf\Demo): </info>', $defaultNamespace);
-        $namespace = str_replace('/', '\\', $namespace);
-        $namespace = rtrim($namespace, '\\');
+        $namespace = $this->io->ask("<info>What is your namespace ({$defaultNamespace}): </info>", $defaultNamespace);
+        $namespace = rtrim(str_replace('/', '\\', $namespace), '\\');
+
         $content = file_get_contents(__DIR__ . '/resources/ConfigProvider.stub');
         $content = str_replace('%NAMESPACE%', $namespace, $content);
         file_put_contents(__DIR__ . '/../src/ConfigProvider.php', $content);
