@@ -102,6 +102,11 @@ class OptionalPackages
      */
     private $stabilityFlags;
 
+    /**
+     * @var string
+     */
+    private $componentName;
+
     public function __construct(IOInterface $io, Composer $composer, string $projectRoot = null)
     {
         $this->io = $io;
@@ -118,6 +123,16 @@ class OptionalPackages
         $this->config = require __DIR__ . '/config.php';
         // Source path for this file
         $this->installerSource = realpath(__DIR__) . '/';
+    }
+
+    /**
+     * SetUp component name.
+     */
+    public function setUpComponentName()
+    {
+        $name = $this->io->ask('<info>What is your component name: </info>');
+
+        $this->componentName = $name;
     }
 
     /**

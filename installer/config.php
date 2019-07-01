@@ -22,10 +22,6 @@ return [
     'require-dev' => [
     ],
     'questions' => [
-        'name' => [
-            'question' => 'What is your component name ?',
-            'required' => true,
-        ],
         'framework' => [
             'question' => 'Do you want to use hyperf/framework component ?',
             'default' => 'n',

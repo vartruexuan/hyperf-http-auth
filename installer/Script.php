@@ -22,6 +22,7 @@ class Script
 
         $installer->io->write('<info>Setting up optional packages</info>');
 
+        $installer->setUpComponentName();
         $installer->removeDevDependencies();
         $installer->promptForOptionalPackages();
         $installer->updateRootPackage();
