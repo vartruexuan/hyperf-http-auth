@@ -124,10 +124,10 @@ class OptionalPackages
      */
     public function setUpComposerJson()
     {
-        $this->setUpName();
+        $name = $this->setUpName();
         $this->setUpLicense();
         $this->setUpDescription();
-        $this->setUpNamespace();
+        $this->setUpNamespace($name);
 
         $this->composerDefinition['type'] = 'library';
     }
@@ -135,7 +135,10 @@ class OptionalPackages
     public function setUpName()
     {
         $name = $this->io->ask('<info>What is your component name (hyperf/demo): </info>', 'hyperf/demo');
+        $name = str_replace('\\', '/', $name);
         $this->composerDefinition['name'] = $name;
+
+        return $name;
     }
 
     public function setUpLicense()
@@ -150,10 +153,11 @@ class OptionalPackages
         $this->composerDefinition['description'] = $res;
     }
 
-    public function setUpNamespace()
+    public function setUpNamespace(string $name)
     {
-        $namespace = $this->io->ask('<info>What is your namespace (Hyperf\Demo): </info>', 'Hyperf\Demo');
-
+        $defaultNamespace = rtrim(str_replace('/', '\\', $name), '\\');
+        $namespace = $this->io->ask('<info>What is your namespace (Hyperf\Demo): </info>', $defaultNamespace);
+        $namespace = str_replace('/', '\\', $namespace);
         $namespace = rtrim($namespace, '\\');
         $content = file_get_contents(__DIR__ . '/resources/ConfigProvider.stub');
         $content = str_replace('%NAMESPACE%', $namespace, $content);
