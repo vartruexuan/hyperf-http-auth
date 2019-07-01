@@ -1,0 +1,42 @@
+{
+    "name": "hyperf/component-creater",
+    "type": "library",
+    "license": "MIT",
+    "keywords": [
+        "php",
+        "component"
+    ],
+    "description": "RBAC_PHP_SDK",
+    "authors": [
+        {
+            "name": "李铭昕",
+            "email": "l@hyperf.io"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Hyperf\\Creater\\": "src/",
+            "Installer\\": "installer/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Test\\": "tests"
+        }
+    },
+    "require": {
+        "php": ">=7.2"
+    },
+    "require-dev": {
+        "swoft/swoole-ide-helper": "dev-master",
+        "phpunit/phpunit": "^5.7",
+        "phpstan/phpstan": "^0.10.5",
+        "friendsofphp/php-cs-fixer": "^2.14"
+    },
+    "scripts": {
+        "pre-install-cmd": "Installer\\Script::install",
+        "pre-update-cmd": "Installer\\Script::install",
+        "test": "./vendor/bin/phpunit -c phpunit.xml --colors=always",
+        "cs-fix": "php-cs-fixer fix $1"
+    }
+}
