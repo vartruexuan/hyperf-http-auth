@@ -126,6 +126,7 @@ class OptionalPackages
     public function setUpComposerJson()
     {
         $name = $this->io->ask('<info>What is your component name: </info>');
+
         $this->setUpNamespace();
     }
 
@@ -139,7 +140,7 @@ class OptionalPackages
         file_put_contents(__DIR__ . '/../src/ConfigProvider.php', $content);
         @unlink(__DIR__ . '/../src/.gitkeep');
         $this->composerDefinition['autoload']['psr-4'][$namespace . '\\'] = 'src/';
-        $this->composerDefinition['autoload']['extra']['hyperf']['config'] = $namespace . '\\ConfigProvider';
+        $this->composerDefinition['extra']['hyperf']['config'] = $namespace . '\\ConfigProvider';
     }
 
     /**
