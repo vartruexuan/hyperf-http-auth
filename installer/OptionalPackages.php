@@ -21,6 +21,7 @@ use Composer\Package\Link;
 use Composer\Package\RootPackageInterface;
 use Composer\Package\Version\VersionParser;
 use FilesystemIterator;
+use Hyperf\Utils\Str;
 use RecursiveDirectoryIterator;
 use RecursiveIteratorIterator;
 
@@ -136,6 +137,7 @@ class OptionalPackages
     {
         $name = $this->io->ask('<info>What is your component name (hyperf/demo): </info>', 'hyperf/demo');
         $name = str_replace('\\', '/', $name);
+        $name = rtrim($name, '/');
         $this->composerDefinition['name'] = $name;
 
         return $name;
@@ -155,7 +157,8 @@ class OptionalPackages
 
     public function setUpNamespace(string $name)
     {
-        $defaultNamespace = rtrim(str_replace('/', '\\', $name), '\\');
+        $defaultNamespace = $this->guessNamespace($name);
+
         $namespace = $this->io->ask('<info>What is your namespace (Hyperf\Demo): </info>', $defaultNamespace);
         $namespace = str_replace('/', '\\', $namespace);
         $namespace = rtrim($namespace, '\\');
@@ -378,6 +381,16 @@ class OptionalPackages
             return preg_quote($word, '/');
         }, $entries));
         return preg_replace('/^.*(?:' . $entries . ").*$(?:\r?\n)?/m", '', $content);
+    }
+
+    protected function guessNamespace(string $name)
+    {
+        $nss = explode('/', $name);
+        foreach ($nss as $i => $value) {
+            $nss[$i] = Str::studly($value);
+        }
+
+        return implode('\\', $nss);
     }
 
     /**
