@@ -135,8 +135,9 @@ class OptionalPackages
 
         $namespace = rtrim($namespace, '\\');
         $content = file_get_contents(__DIR__ . '/resources/ConfigProvider.stub');
-        $content = str_replace('%NAMESPACE%', $content);
+        $content = str_replace('%NAMESPACE%', $namespace, $content);
         file_put_contents(__DIR__ . '/../src/ConfigProvider.php', $content);
+        @unlink(__DIR__ . '/../src/.gitkeep');
         $this->composerDefinition['autoload']['psr-4'][$namespace . '\\'] = 'src/';
         $this->composerDefinition['autoload']['extra']['hyperf']['config'] = $namespace . '\\ConfigProvider';
     }
