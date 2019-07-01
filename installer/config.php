@@ -47,7 +47,7 @@ return [
                 1 => [
                     'name' => 'yes',
                     'packages' => [
-                        'hyperf/model-cache',
+                        'hyperf/di',
                     ],
                 ],
             ],
