@@ -125,9 +125,28 @@ class OptionalPackages
      */
     public function setUpComposerJson()
     {
-        $name = $this->io->ask('<info>What is your component name (hyperf/demo): </info>', 'hyperf/demo');
-
+        $this->setUpName();
+        $this->setUpLicense();
+        $this->setUpDescription();
         $this->setUpNamespace();
+    }
+
+    public function setUpName()
+    {
+        $name = $this->io->ask('<info>What is your component name (hyperf/demo): </info>', 'hyperf/demo');
+        $this->composerDefinition['name'] = $name;
+    }
+
+    public function setUpLicense()
+    {
+        $res = $this->io->ask('<info>What is your component license (MIT) : </info>', 'MIT');
+        $this->composerDefinition['license'] = $res;
+    }
+
+    public function setUpDescription()
+    {
+        $res = $this->io->ask('<info>What is your component description : </info>', '');
+        $this->composerDefinition['description'] = $res;
     }
 
     public function setUpNamespace()

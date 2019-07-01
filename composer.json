@@ -6,13 +6,7 @@
         "php",
         "hyperf"
     ],
-    "description": "RBAC_PHP_SDK",
-    "authors": [
-        {
-            "name": "李铭昕",
-            "email": "l@hyperf.io"
-        }
-    ],
+    "description": "Hyperf Component Creater.",
     "autoload": {
         "psr-4": {
             "Installer\\": "installer/"
