@@ -25,7 +25,9 @@
         }
     },
     "require": {
-        "php": ">=7.2"
+        "php": ">=7.2",
+        "ext-swoole": ">=4.3",
+        "hyperf/utils": "1.0.*"
     },
     "require-dev": {
         "swoft/swoole-ide-helper": "dev-master",
