@@ -30,10 +30,10 @@
     },
     "require-dev": {
         "composer/composer": "^1.5",
-        "swoft/swoole-ide-helper": "dev-master",
-        "phpunit/phpunit": "^5.7",
+        "friendsofphp/php-cs-fixer": "^2.14",
+        "hyperf/testing": "1.0.*",
         "phpstan/phpstan": "^0.10.5",
-        "friendsofphp/php-cs-fixer": "^2.14"
+        "swoft/swoole-ide-helper": "dev-master"
     },
     "config": {
         "sort-packages": true
