@@ -42,7 +42,6 @@ class OptionalPackages
      * @var string[]
      */
     private $assetsToRemove = [
-        '.travis.yml',
     ];
 
     /**
