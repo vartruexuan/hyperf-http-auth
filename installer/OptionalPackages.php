@@ -21,7 +21,6 @@ use Composer\Package\Link;
 use Composer\Package\RootPackageInterface;
 use Composer\Package\Version\VersionParser;
 use FilesystemIterator;
-use Hyperf\Utils\Str;
 use RecursiveDirectoryIterator;
 use RecursiveIteratorIterator;
 
@@ -387,7 +386,8 @@ class OptionalPackages
     {
         $nss = explode('/', $name);
         foreach ($nss as $i => $value) {
-            $nss[$i] = Str::studly($value);
+            $value = ucwords(str_replace(['-', '_'], ' ', $value));
+            $nss[$i] = str_replace(' ', '', $value);
         }
 
         return implode('\\', $nss);
