@@ -128,6 +128,8 @@ class OptionalPackages
         $this->setUpLicense();
         $this->setUpDescription();
         $this->setUpNamespace();
+
+        $this->composerDefinition['type'] = 'library';
     }
 
     public function setUpName()

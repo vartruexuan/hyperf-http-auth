@@ -1,6 +1,6 @@
 {
     "name": "hyperf/component-creater",
-    "type": "library",
+    "type": "project",
     "license": "MIT",
     "keywords": [
         "php",
