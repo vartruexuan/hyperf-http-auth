@@ -102,11 +102,6 @@ class OptionalPackages
      */
     private $stabilityFlags;
 
-    /**
-     * @var string
-     */
-    private $componentName;
-
     public function __construct(IOInterface $io, Composer $composer, string $projectRoot = null)
     {
         $this->io = $io;
@@ -128,11 +123,22 @@ class OptionalPackages
     /**
      * SetUp component name.
      */
-    public function setUpComponentName()
+    public function setUpComposerJson()
     {
         $name = $this->io->ask('<info>What is your component name: </info>');
+        $this->setUpNamespace();
+    }
 
-        $this->componentName = $name;
+    public function setUpNamespace()
+    {
+        $namespace = $this->io->ask('<info>What is your namespace: </info>');
+
+        $namespace = rtrim($namespace, '\\');
+        $content = file_get_contents(__DIR__ . '/resources/ConfigProvider.stub');
+        $content = str_replace('%NAMESPACE%', $content);
+        file_put_contents(__DIR__ . '/../src/ConfigProvider.php', $content);
+        $this->composerDefinition['autoload']['psr-4'][$namespace . '\\'] = 'src/';
+        $this->composerDefinition['autoload']['extra']['hyperf']['config'] = $namespace . '\\ConfigProvider';
     }
 
     /**
