@@ -121,22 +121,6 @@ class OptionalPackages
     }
 
     /**
-     * Create data and cache directories, if not present.
-     *
-     * Also sets up appropriate permissions.
-     */
-    public function setupRuntimeDir(): void
-    {
-        $this->io->write('<info>Setup data and cache dir</info>');
-        $runtimeDir = $this->projectRoot . '/runtime';
-
-        if (! is_dir($runtimeDir)) {
-            mkdir($runtimeDir, 0775, true);
-            chmod($runtimeDir, 0775);
-        }
-    }
-
-    /**
      * Cleanup development dependencies.
      *
      * The dev dependencies should be removed from the stability flags,
