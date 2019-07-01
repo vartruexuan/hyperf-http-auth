@@ -41,7 +41,7 @@
     "scripts": {
         "pre-install-cmd": "Installer\\Script::install",
         "pre-update-cmd": "Installer\\Script::install",
-        "test": "./vendor/bin/phpunit -c phpunit.xml --colors=always",
+        "test": "co-phpunit -c phpunit.xml --colors=always",
         "cs-fix": "php-cs-fixer fix $1"
     }
 }
