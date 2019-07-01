@@ -1,9 +1,12 @@
 <?php
 
 $header = <<<'EOF'
-This file is part of 李铭昕.
+This file is part of Hyperf.
 
-@contact  l@hyperf.io
+@link     https://www.hyperf.io
+@document https://doc.hyperf.io
+@contact  group@hyperf.io
+@license  https://github.com/hyperf-cloud/hyperf/blob/master/LICENSE
 EOF;
 
 return PhpCsFixer\Config::create()
@@ -42,7 +45,7 @@ return PhpCsFixer\Config::create()
             'imports_order' => [
                 'class', 'function', 'const',
             ],
-            'sort_algorithm' => 'length',
+            'sort_algorithm' => 'alpha',
         ],
         'single_line_comment_style' => [
             'comment_types' => [

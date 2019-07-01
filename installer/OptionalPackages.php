@@ -250,7 +250,7 @@ class OptionalPackages
             // Copy files
             if (isset($question['options'][$answer])) {
                 $force = ! empty($question['force']);
-                foreach ($question['options'][$answer]['resources'] as $resource => $target) {
+                foreach ($question['options'][$answer]['resources'] ?? [] as $resource => $target) {
                     $this->copyResource($resource, $target, $force);
                 }
             }
