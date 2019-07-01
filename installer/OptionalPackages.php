@@ -125,14 +125,14 @@ class OptionalPackages
      */
     public function setUpComposerJson()
     {
-        $name = $this->io->ask('<info>What is your component name: </info>');
+        $name = $this->io->ask('<info>What is your component name (hyperf/demo): </info>', 'hyperf/demo');
 
         $this->setUpNamespace();
     }
 
     public function setUpNamespace()
     {
-        $namespace = $this->io->ask('<info>What is your namespace: </info>');
+        $namespace = $this->io->ask('<info>What is your namespace (Hyperf\Demo): </info>', 'Hyperf\Demo');
 
         $namespace = rtrim($namespace, '\\');
         $content = file_get_contents(__DIR__ . '/resources/ConfigProvider.stub');

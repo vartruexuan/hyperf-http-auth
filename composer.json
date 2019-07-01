@@ -4,7 +4,7 @@
     "license": "MIT",
     "keywords": [
         "php",
-        "component"
+        "hyperf"
     ],
     "description": "RBAC_PHP_SDK",
     "authors": [
