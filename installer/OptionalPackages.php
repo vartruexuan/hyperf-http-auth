@@ -261,7 +261,8 @@ class OptionalPackages
     {
         // Update composer definition
         $this->composerJson->write($this->composerDefinition);
-        $this->clearComposerLockFile();
+        $this->addDefaultGitAttributes();
+        // $this->clearComposerLockFile();
         $this->cleanUp();
     }
 
@@ -505,6 +506,13 @@ class OptionalPackages
         $ignoreFile = sprintf('%s/.gitignore', $this->projectRoot);
         $content = $this->removeLinesContainingStrings(['composer.lock'], file_get_contents($ignoreFile));
         file_put_contents($ignoreFile, $content);
+    }
+
+    private function addDefaultGitAttributes()
+    {
+        $this->io->write('<info>Adding .gitattributes</info>');
+        $ignoreFile = sprintf('%s/.gitattributes', $this->projectRoot);
+        file_put_contents($ignoreFile, '/tests export-ignore');
     }
 
     /**
