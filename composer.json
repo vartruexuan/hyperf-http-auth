@@ -19,13 +19,11 @@
     },
     "require": {
         "php": ">=7.2",
-        "ext-swoole": ">=4.3",
-        "hyperf/utils": "1.1.*"
+        "ext-swoole": ">=4.4"
     },
     "require-dev": {
         "composer/composer": "^1.5",
         "friendsofphp/php-cs-fixer": "^2.14",
-        "hyperf/testing": "1.1.*",
         "phpstan/phpstan": "^0.10.5",
         "swoft/swoole-ide-helper": "dev-master"
     },
