@@ -16,7 +16,7 @@ matrix:
 
 services:
   - mysql
-  - redis
+  - redis-server
   - docker
 
 before_install:
