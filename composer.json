@@ -25,6 +25,7 @@
         "composer/composer": "^1.5",
         "friendsofphp/php-cs-fixer": "^2.14",
         "phpstan/phpstan": "^0.10.5",
+        "hyperf/testing": "1.1.*",
         "swoft/swoole-ide-helper": "dev-master"
     },
     "config": {
