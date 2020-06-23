@@ -9,14 +9,13 @@ declare(strict_types=1);
  * @contact  group@hyperf.io
  * @license  https://github.com/hyperf/hyperf/blob/master/LICENSE
  */
-
 return [
     'packages' => [
         'hyperf/framework' => [
-            'version' => '1.1.*',
+            'version' => '2.0.*',
         ],
         'hyperf/di' => [
-            'version' => '1.1.*',
+            'version' => '2.0.*',
         ],
     ],
     'require-dev' => [
