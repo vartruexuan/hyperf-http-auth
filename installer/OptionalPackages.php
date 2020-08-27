@@ -511,7 +511,8 @@ class OptionalPackages
     {
         $this->io->write('<info>Adding .gitattributes</info>');
         $ignoreFile = sprintf('%s/.gitattributes', $this->projectRoot);
-        file_put_contents($ignoreFile, '/tests export-ignore');
+        file_put_contents($ignoreFile, '/tests export-ignore', FILE_APPEND);
+        file_put_contents($ignoreFile, '/.github export-ignore', FILE_APPEND);
     }
 
     /**
