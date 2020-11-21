@@ -3,17 +3,19 @@ name: PHPUnit
 on: [push, pull_request]
 
 env:
-  SW_VERSION: '4.5.6'
+  SWOOLE_VERSION: '4.5.8'
+  SWOW_VERSION: 'develop'
 
 jobs:
   ci:
-    name: Test on PHP ${{ matrix.php-version }}
+    name: Test PHP ${{ matrix.php-version }} on ${{ matrix.engine }}
     runs-on: "${{ matrix.os }}"
     strategy:
       matrix:
         os: [ubuntu-latest]
         php-version: ['7.2', '7.3', '7.4']
-      max-parallel: 3
+        engine: ['none', 'swoole', 'swow']
+      max-parallel: 5
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -22,11 +24,12 @@ jobs:
         with:
           php-version: ${{ matrix.php-version }}
           tools: phpize
-          ini-values: extension=swoole, opcache.enable_cli=1
+          ini-values: opcache.enable_cli=1
           coverage: none
       - name: Setup Swoole
+        if: ${{ matrix.engine == 'swoole' }}
         run: |
-          wget https://github.com/swoole/swoole-src/archive/v${SW_VERSION}.tar.gz -O swoole.tar.gz
+          wget https://github.com/swoole/swoole-src/archive/v${SWOOLE_VERSION}.tar.gz -O swoole.tar.gz
           mkdir -p swoole
           tar -xf swoole.tar.gz -C swoole --strip-components=1
           rm swoole.tar.gz
@@ -35,6 +38,21 @@ jobs:
           ./configure --enable-openssl --enable-mysqlnd --enable-http2
           make -j$(nproc)
           sudo make install
+          sudo sh -c "extension=swoole > /etc/php/${{ matrix.php-version }}/cli/conf.d/swoole.ini"
+      - name: Setup Swow
+        if: ${{ matrix.engine == 'swow' }}
+        run: |
+          wget https://github.com/swow/swow/archive/"${SWOW_VERSION}".tar.gz -O swow.tar.gz
+          mkdir -p swow
+          tar -xf swow.tar.gz -C swow --strip-components=1
+          rm swow.tar.gz
+          cd swow/ext || exit
+
+          phpize
+          ./configure --enable-debug
+          make -j "$(nproc)"
+          sudo make install
+          sudo sh -c "extension=swow > /etc/php/${{ matrix.php-version }}/cli/conf.d/swow.ini"
       - name: Setup Packages
         run: composer update -o --no-scripts
       - name: Run Test Cases
