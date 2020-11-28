@@ -3,7 +3,7 @@ name: PHPUnit
 on: [push, pull_request]
 
 env:
-  SWOOLE_VERSION: '4.5.8'
+  SWOOLE_VERSION: '4.5.9'
   SWOW_VERSION: 'develop'
 
 jobs:
@@ -38,7 +38,8 @@ jobs:
           ./configure --enable-openssl --enable-mysqlnd --enable-http2
           make -j$(nproc)
           sudo make install
-          sudo sh -c "extension=swoole > /etc/php/${{ matrix.php-version }}/cli/conf.d/swoole.ini"
+          sudo sh -c "echo extension=swoole > /etc/php/${{ matrix.php-version }}/cli/conf.d/swoole.ini"
+          php --ri swoole
       - name: Setup Swow
         if: ${{ matrix.engine == 'swow' }}
         run: |
@@ -52,7 +53,8 @@ jobs:
           ./configure --enable-debug
           make -j "$(nproc)"
           sudo make install
-          sudo sh -c "extension=swow > /etc/php/${{ matrix.php-version }}/cli/conf.d/swow.ini"
+          sudo sh -c "echo extension=swow > /etc/php/${{ matrix.php-version }}/cli/conf.d/swow.ini"
+          php --ri swow
       - name: Setup Packages
         run: composer update -o --no-scripts
       - name: Run Test Cases
