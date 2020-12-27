@@ -30,7 +30,10 @@
         "swow/swow": "dev-develop",
         "symfony/var-dumper": "^5.1"
     },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
     "config": {
+        "optimize-autoloader": true,
         "sort-packages": true
     },
     "scripts": {
