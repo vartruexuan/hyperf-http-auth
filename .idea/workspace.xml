@@ -19,12 +19,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="63a23767-7c19-4b48-9f69-4a1cf64a2948" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Data/ResponseData.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Middleware/AuthMiddleware.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/auth/HttpHeaderAuth.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Auth/HttpHeaderAuth.php" afterDir="false" />
-    </list>
+    <list default="true" id="63a23767-7c19-4b48-9f69-4a1cf64a2948" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -117,7 +112,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/Data" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/helpers" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
@@ -146,7 +141,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1617701900293</updated>
-      <workItem from="1617701901348" duration="2688000" />
+      <workItem from="1617701901348" duration="3041000" />
     </task>
     <servers />
   </component>
