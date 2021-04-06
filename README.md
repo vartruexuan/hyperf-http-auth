@@ -1,5 +1,5 @@
 # component-creater
 
 ```
-composer create-project hyperf/component-creater
+composer require php-xuan/hyperf-http-auth
 ```
