@@ -1,2 +1,5 @@
 # hyperf-http-auth
-登录权限
+
+```
+composer require php-xuan/hyperf-http-auth
+```
