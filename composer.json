@@ -1,15 +1,15 @@
 {
-    "name": "hyperf/component-creater",
-    "type": "project",
+    "name": "hyperf-http-auth",
+    "type": "library",
     "license": "MIT",
     "keywords": [
         "php",
         "hyperf"
     ],
-    "description": "Hyperf Component Creater.",
+    "description": "",
     "autoload": {
         "psr-4": {
-            "Installer\\": "installer/"
+            "HyperfHttpAuth\\": "src/"
         }
     },
     "autoload-dev": {
@@ -18,10 +18,10 @@
         }
     },
     "require": {
-        "php": ">=7.3"
+        "php": ">=7.3",
+        "hyperf/di": "2.1.*"
     },
     "require-dev": {
-        "composer/composer": "^2.0",
         "friendsofphp/php-cs-fixer": "^2.14",
         "mockery/mockery": "^1.0",
         "phpstan/phpstan": "^0.12",
@@ -37,10 +37,13 @@
         "sort-packages": true
     },
     "scripts": {
-        "pre-install-cmd": "Installer\\Script::install",
-        "pre-update-cmd": "Installer\\Script::install",
         "test": "phpunit -c phpunit.xml --colors=always",
         "analyse": "phpstan analyse --memory-limit 1024M -l 0 ./src",
         "cs-fix": "php-cs-fixer fix $1"
+    },
+    "extra": {
+        "hyperf": {
+            "config": "HyperfHttpAuth\\ConfigProvider"
+        }
     }
 }
