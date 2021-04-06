@@ -1,7 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="63a23767-7c19-4b48-9f69-4a1cf64a2948" name="Default Changelist" comment="" />
+    <list default="true" id="63a23767-7c19-4b48-9f69-4a1cf64a2948" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/IdentityInterface.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/UserContainer.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/UserHelper.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/auth/HttpHeaderAuth.php" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -94,8 +117,18 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src" />
     <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\www\hyperf-http-auth\src" />
+      <recent name="E:\www\hyperf-http-auth\src\auth" />
+      <recent name="E:\www\hyperf-http-auth\src\helpers" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\www\hyperf-http-auth\src" />
+    </key>
   </component>
   <component name="RunManager">
     <configuration name="phpunit.xml" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
@@ -111,11 +144,22 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1617701900293</updated>
-      <workItem from="1617701901348" duration="924000" />
+      <workItem from="1617701901348" duration="1227000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>
