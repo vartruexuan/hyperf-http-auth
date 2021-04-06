@@ -6,7 +6,7 @@
  * Time: 15:25
  */
 
-namespace HyperfHttpAuth\helpers;
+namespace HyperfHttpAuth\Helpers;
 
 
 use Hyperf\Utils\Context;
