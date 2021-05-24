@@ -6,7 +6,7 @@
  * Time: 9:23
  */
 
-namespace HyperfHttpAuth\Annotation;
+namespace Vartruexuan\HyperfHttpAuth\Annotation;
 use Hyperf\Di\Annotation\AbstractAnnotation;
 
 /**

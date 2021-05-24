@@ -6,7 +6,7 @@
  * Time: 10:42
  */
 
-namespace HyperfHttpAuth\Auth;
+namespace Vartruexuan\HyperfHttpAuth\Auth;
 
 use Psr\Http\Message\ResponseInterface as PsrResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;

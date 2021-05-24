@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace HyperfHttpAuth\Middleware;
+namespace Vartruexuan\HyperfHttpAuth\Middleware;
 
 use Psr\Container\ContainerInterface;
 use Psr\Http\Message\ResponseInterface;
@@ -13,11 +13,11 @@ use Hyperf\HttpServer\Contract\ResponseInterface as HttpResponse;
 use Hyperf\HttpServer\Router\Dispatched;
 use Hyperf\Di\Annotation\AnnotationCollector;
 use App\Data\ResponseData;
-use HyperfHttpAuth\Auth\HttpHeaderAuth;
-use HyperfHttpAuth\Annotation\FreeLogin;
-use HyperfHttpAuth\UserContainer;
-use HyperfHttpAuth\Helpers\Helper;
-use HyperfHttpAuth\Helpers\UserHelper;
+use Vartruexuan\HyperfHttpAuth\Auth\HttpHeaderAuth;
+use Vartruexuan\HyperfHttpAuth\Annotation\FreeLogin;
+use Vartruexuan\HyperfHttpAuth\UserContainer;
+use Vartruexuan\HyperfHttpAuth\Helpers\Helper;
+use Vartruexuan\HyperfHttpAuth\Helpers\UserHelper;
 
 /**
  * 用户权限验证

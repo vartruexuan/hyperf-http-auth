@@ -6,7 +6,7 @@
  * Time: 10:56
  */
 
-namespace HyperfHttpAuth\Data;
+namespace Vartruexuan\HyperfHttpAuth\Data;
 
 use Hyperf\Di\Annotation\Inject;
 use App\Constants\ErrorCode;
