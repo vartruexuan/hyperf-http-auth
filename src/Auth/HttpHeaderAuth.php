@@ -12,8 +12,9 @@ use Psr\Http\Message\ResponseInterface as PsrResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Hyperf\Di\Annotation\Inject;
 use Psr\Container\ContainerInterface;
+use Vartruexuan\HyperfHttpAuth\UserContainer;
 
-class HttpHeaderAuth
+class HttpHeaderAuth implements AuthInterface
 {
 
     /**
@@ -71,5 +72,10 @@ class HttpHeaderAuth
         }
 
         return null;
+    }
+
+    public function handleFailure(PsrResponseInterface $response)
+    {
+        // TODO: Implement handleFailure() method.
     }
 }

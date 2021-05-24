@@ -19,7 +19,8 @@
     },
     "require": {
         "php": ">=7.2",
-        "hyperf/di": "2.0.*"
+        "hyperf/di": "2.0.*",
+        "hyperf/redis": "^2.1"
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^2.14",
@@ -43,7 +44,7 @@
     },
     "extra": {
         "hyperf": {
-            "config": "HyperfHttpAuth\\ConfigProvider"
+            "config": "Vartruexuan\\HyperfHttpAuth\\ConfigProvider"
         }
     }
 }

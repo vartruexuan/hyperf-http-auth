@@ -5,14 +5,10 @@ declare(strict_types=1);
 namespace Vartruexuan\HyperfHttpAuth\Middleware;
 
 use Psr\Container\ContainerInterface;
-use Psr\Http\Message\ResponseInterface;
+use Hyperf\HttpServer\Contract\ResponseInterface;
 use Psr\Http\Server\MiddlewareInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
-use Hyperf\HttpServer\Contract\ResponseInterface as HttpResponse;
-use Hyperf\HttpServer\Router\Dispatched;
-use Hyperf\Di\Annotation\AnnotationCollector;
-use App\Data\ResponseData;
 use Vartruexuan\HyperfHttpAuth\Auth\HttpHeaderAuth;
 use Vartruexuan\HyperfHttpAuth\Annotation\FreeLogin;
 use Vartruexuan\HyperfHttpAuth\UserContainer;
@@ -33,43 +29,40 @@ class AuthMiddleware implements MiddlewareInterface
      */
     protected $container;
 
+
+
     /**
-     * @var HttpResponse
+     * @Inject
+     * @var ResponseInterface
      */
-    protected $response;
+    public $response;
 
     /**
      * @var ResponseData
      */
     protected $responseData;
 
-    public function __construct(ContainerInterface $container, HttpResponse $response, ResponseData $responseData)
+    public function __construct(ContainerInterface $container, ResponseInterface $response )
     {
         $this->container = $container;
         $this->response = $response;
-        $this->responseData = $responseData;
 
     }
 
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
-        $response = $this->responseData->sendSuccess();
         $userContainer = new UserContainer();
         $userContainer->setUniqueId(BaseService::$project);
         $auth = $this->container->get(HttpHeaderAuth::class);
-        // 得到路由
         [$controller, $action]=Helper::getControllerAction($request);
-
-        //  FreeLogin 免登录
+        // annotation: FreeLogin
         if (!Helper::hasAnnotation(FreeLogin::class,$controller,$action)) {
-            if (!$auth->authenticate($userContainer, $request, $response)) {
-
-                // 待
+            if (!$auth->authenticate($userContainer, $request, $this->response)) {
+                throw new AuthenticationException();
             }
-            // 设置对象
+            // login user
             UserHelper::setUserContainer($userContainer);
         }
-
         return $handler->handle($request);
 
     }

@@ -6,14 +6,13 @@
  * Time: 11:16
  */
 
-namespace Vartruexuan\HyperfHttpAuth;
+namespace Vartruexuan\HyperfHttpAuth\User;
 
 use Hyperf\Di\Annotation\Inject;
 use Hyperf\Utils\Str;
 use Psr\Container\ContainerInterface;
 use Hyperf\Redis\Redis;
-use App\Common\Helpers\Helper;
-use _HumbugBox2af02d339e80\phpDocumentor\Reflection\Types\Context;
+use Vartruexuan\HyperfHttpAuth\Helpers\Helper;
 
 class UserContainer
 {
