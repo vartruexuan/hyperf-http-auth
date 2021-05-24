@@ -20,16 +20,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="63a23767-7c19-4b48-9f69-4a1cf64a2948" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/hyperf-http-auth.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/hyperf-http-auth.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/publish/hyperf_http_auth.php" beforeDir="false" afterPath="$PROJECT_DIR$/publish/hyperf_http_auth.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Auth/AuthInterface.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Auth/AuthInterface.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Auth/HttpHeaderAuth.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Auth/HttpHeaderAuth.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Helpers/Helper.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Helpers/Helper.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Helpers/UserHelper.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Helpers/UserHelper.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Middleware/AuthMiddleware.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Middleware/AuthMiddleware.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/User/UserContainer.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/User/UserContainer.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

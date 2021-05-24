@@ -11,8 +11,6 @@ namespace Vartruexuan\HyperfHttpAuth\User;
 use Hyperf\Di\Annotation\Inject;
 use Hyperf\Utils\Str;
 use Psr\Container\ContainerInterface;
-use Hyperf\Redis\Redis;
-use Vartruexuan\HyperfHttpAuth\Helpers\Helper;
 
 class UserContainer
 {
