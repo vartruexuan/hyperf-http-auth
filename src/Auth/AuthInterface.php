@@ -5,7 +5,7 @@ namespace Vartruexuan\HyperfHttpAuth\Auth;
 
 
 use Psr\Http\Message\ResponseInterface as PsrResponseInterface;
-use Vartruexuan\HyperfHttpAuth\UserContainer;
+use Vartruexuan\HyperfHttpAuth\User\UserContainer;
 use Psr\Http\Message\ServerRequestInterface;
 
 interface AuthInterface

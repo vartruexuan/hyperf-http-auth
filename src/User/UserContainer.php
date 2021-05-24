@@ -17,7 +17,7 @@ use Vartruexuan\HyperfHttpAuth\Helpers\Helper;
 class UserContainer
 {
 
-    private $uniqueId = 'project';
+    private $uniqueId = 'default';
     private $identity;
     private $identityClass;
     private $accessToken;
@@ -29,18 +29,29 @@ class UserContainer
      */
     public $contain;
 
+    /**
+     * @Inject
+     *
+     * @var \Hyperf\Cache\Cache
+     */
+    public $cache;
+
     public function __construct()
     {
-        $this->setConfig(config($this->uniqueId . '.user', []));
+        $this->setConfig();
+
     }
 
+    /**
+     * @return mixed
+     */
     public function getIdentity()
     {
         return $this->identity;
     }
 
     /**
-     * @param \App\Common\Auth\IdentityInterface $identity
+     * @param IdentityInterface $identity
      *
      * @return $this
      */
@@ -49,6 +60,14 @@ class UserContainer
         $this->identity = $identity;
         $this->identityClass = get_class($identity);
         return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isGuest()
+    {
+        return $this->identity==null;
     }
 
     /**
@@ -71,7 +90,7 @@ class UserContainer
     public function setUniqueId($uniqueId)
     {
         $this->uniqueId = $uniqueId;
-        $this->setConfig(config($this->uniqueId . '.user', []));
+        $this->setConfig();
         return $this;
     }
 
@@ -91,8 +110,8 @@ class UserContainer
     /**
      * 登录
      *
-     * @param \App\Common\Auth\IdentityInterface $identity
-     * @param int|null                           $expire
+     * @param IdentityInterface $identity
+     * @param int|null          $expire
      *
      * @return bool
      */
@@ -102,9 +121,8 @@ class UserContainer
         $this->accessToken = $this->generateAccessToken();
         $tokenKey = $this->getAccessTokenKey($this->accessToken);
         $expire = intval($expire ?? $this->expire);
-        return $this->getCache()->set($tokenKey, $identity->getId(), [
-            'ex' => $expire,
-        ]);
+
+        return $this->getCache()->set($tokenKey, $identity->getId(),$expire);
     }
 
     /**
@@ -118,7 +136,7 @@ class UserContainer
     {
         $token = $token ? $token : $this->accessToken;
         if ($token) {
-            $this->getCache()->del($this->getAccessTokenKey($token));
+            $this->getCache()->delete($this->getAccessTokenKey($token));
             return true;
         }
         return false;
@@ -133,7 +151,7 @@ class UserContainer
      */
     public function loginByAccessToken($token)
     {
-        $this->accessToken=$token;
+        $this->accessToken = $token;
         if ($identity = $this->findIdentityByAccessToken($token)) {
             $this->setIdentity($identity);
             return $identity;
@@ -167,6 +185,9 @@ class UserContainer
     {
         $accessToken = $this->getAccessTokenKey($token);
         $id = $this->getCache()->get($accessToken);
+        if(!$id){
+            return  null;
+        }
         return $this->findIdentityById($id);
     }
 
@@ -184,12 +205,13 @@ class UserContainer
 
     /**
      * 获取缓存对象
-     *
-     * @return \Hyperf\Redis\Redis
+     * @return \Hyperf\Cache\Cache
      */
-    public function getCache(): Redis
+    public function getCache()
     {
-        return Helper::redis();
+
+        return $this->cache;
+        //return Helper::redis();
     }
 
     /**
@@ -199,8 +221,9 @@ class UserContainer
      *
      * @return $this
      */
-    public function setConfig($config)
+    public function setConfig()
     {
+        $config=config('hyperf_http_auth.'.$this->uniqueId . '.user', []);
         if (is_array($config)) {
             foreach ($config as $key => $val) {
                 if (property_exists($this, $key)) {

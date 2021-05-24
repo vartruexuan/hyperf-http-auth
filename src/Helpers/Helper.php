@@ -53,7 +53,10 @@ class Helper
     public static function getControllerAction(ServerRequestInterface $request)
     {
         $route = $request->getAttribute(Dispatched::class)->handler->callback;
-        return explode('@', $route);
+        if(is_string($route)){
+            return explode('@', $route);
+        }
+        return $route;
     }
 
     /**
@@ -67,7 +70,7 @@ class Helper
      */
     public static function hasAnnotation(string $annotation,string $class, string $method)
     {
-        $classAnnotation = AnnotationCollector::getClassAnnotation($class, FreeLogin::class);
+        $classAnnotation = AnnotationCollector::getClassAnnotation($class, $annotation);
         $methodAnnotation = AnnotationCollector::getClassMethodAnnotation($class, $method);
         $methodAnnotation=$methodAnnotation ? array_keys($methodAnnotation) : [];
         return $classAnnotation || in_array($annotation,$methodAnnotation );

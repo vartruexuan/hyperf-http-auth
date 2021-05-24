@@ -12,7 +12,7 @@ use Psr\Http\Message\ResponseInterface as PsrResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Hyperf\Di\Annotation\Inject;
 use Psr\Container\ContainerInterface;
-use Vartruexuan\HyperfHttpAuth\UserContainer;
+use Vartruexuan\HyperfHttpAuth\User\UserContainer;
 
 class HttpHeaderAuth implements AuthInterface
 {
@@ -46,15 +46,15 @@ class HttpHeaderAuth implements AuthInterface
     }
 
     /**
-     * @param \App\Common\Auth\UserContainer      $user
-     * @param \Psr\Http\Message\ServerRequestInterface $request
-     * @param \Psr\Http\Message\ResponseInterface      $response
+     * @author:郭昭璇
+     * @param \Vartruexuan\HyperfHttpAuth\User\UserContainer $user
+     * @param \Psr\Http\Message\ServerRequestInterface       $request
+     * @param \Psr\Http\Message\ResponseInterface            $response
      *
-     * @return null
+     * @return bool|mixed|null
      */
     public function   authenticate(UserContainer $user, ServerRequestInterface $request, PsrResponseInterface $response)
     {
-
         if (null!==$authHeader = $request->getHeaderLine($this->header) ) {
             if ($this->pattern !== null) {
                 if (preg_match($this->pattern, $authHeader, $matches)) {

@@ -10,7 +10,7 @@ namespace Vartruexuan\HyperfHttpAuth\Helpers;
 
 
 use Hyperf\Utils\Context;
-
+use Vartruexuan\HyperfHttpAuth\User\UserContainer;
 class UserHelper
 {
 
@@ -19,7 +19,7 @@ class UserHelper
      *
      * @param null $coroutineId
      *
-     * @return \App\Common\Auth\UserContainer|mixed|null
+     * @return UserContainer|mixed|null
      */
     public static function getUserContainer($coroutineId = null)
     {
@@ -29,7 +29,7 @@ class UserHelper
     /**
      * 设置容器
      *
-     * @param \App\Common\Auth\UserContainer $userContainer
+     * @param UserContainer $userContainer
      *
      * @return mixed
      */
