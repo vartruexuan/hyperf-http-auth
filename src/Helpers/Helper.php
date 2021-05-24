@@ -7,7 +7,7 @@
  */
 declare(strict_types=1);
 
-namespace HyperfHttpAuth\Helpers;
+namespace Vartruexuan\HyperfHttpAuth\Helpers;
 
 
 use Hyperf\Utils\ApplicationContext;

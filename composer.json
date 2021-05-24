@@ -1,5 +1,5 @@
 {
-    "name": "hyperf-http-auth",
+    "name": "vartruexuan/hyperf-http-auth",
     "type": "library",
     "license": "MIT",
     "keywords": [
@@ -9,7 +9,7 @@
     "description": "",
     "autoload": {
         "psr-4": {
-            "HyperfHttpAuth\\": "src/"
+            "Vartruexuan\\HyperfHttpAuth\\": "src/"
         }
     },
     "autoload-dev": {
@@ -18,8 +18,8 @@
         }
     },
     "require": {
-        "php": ">=7.3",
-        "hyperf/di": "2.1.*"
+        "php": ">=7.2",
+        "hyperf/di": "2.0.*"
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^2.14",

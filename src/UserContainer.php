@@ -6,7 +6,7 @@
  * Time: 11:16
  */
 
-namespace HyperfHttpAuth;
+namespace Vartruexuan\HyperfHttpAuth;
 
 use Hyperf\Di\Annotation\Inject;
 use Hyperf\Utils\Str;
