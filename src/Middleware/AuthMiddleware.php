@@ -4,20 +4,23 @@ declare(strict_types=1);
 
 namespace Vartruexuan\HyperfHttpAuth\Middleware;
 
+
+use Hyperf\Di\Annotation\Inject;
 use Psr\Container\ContainerInterface;
-use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Server\MiddlewareInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
-use Hyperf\HttpServer\Contract\ResponseInterface as HttpResponse;
-use Hyperf\HttpServer\Router\Dispatched;
-use Hyperf\Di\Annotation\AnnotationCollector;
-use App\Data\ResponseData;
 use Vartruexuan\HyperfHttpAuth\Auth\HttpHeaderAuth;
 use Vartruexuan\HyperfHttpAuth\Annotation\FreeLogin;
-use Vartruexuan\HyperfHttpAuth\UserContainer;
-use Vartruexuan\HyperfHttpAuth\Helpers\Helper;
-use Vartruexuan\HyperfHttpAuth\Helpers\UserHelper;
+use Vartruexuan\HyperfHttpAuth\User\UserContainer;
+use Vartruexuan\HyperfHttpAuth\Helpers\AuthHelper;
+use Vartruexuan\HyperfHttpAuth\Exception\AuthenticationException;
+use FastRoute\Dispatcher;
+use Hyperf\HttpServer\Router\Dispatched;
+use Hyperf\Server\Exception\ServerException;
+use Hyperf\Di\ReflectionManager;
+use Hyperf\Validation\UnauthorizedException;
+use Vartruexuan\HyperfHttpAuth\AuthManage;
 
 /**
  * 用户权限验证
@@ -33,44 +36,88 @@ class AuthMiddleware implements MiddlewareInterface
      */
     protected $container;
 
-    /**
-     * @var HttpResponse
-     */
-    protected $response;
+    public $response;
 
-    /**
-     * @var ResponseData
-     */
-    protected $responseData;
+    protected $project = 'default';
 
-    public function __construct(ContainerInterface $container, HttpResponse $response, ResponseData $responseData)
+    protected $authManager;
+
+    public function __construct(ContainerInterface $container, \Hyperf\HttpServer\Contract\ResponseInterface $response, AuthManage $authManager)
     {
         $this->container = $container;
         $this->response = $response;
-        $this->responseData = $responseData;
-
+        $this->authManager = $authManager;
     }
 
-    public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
+    public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): \Psr\Http\Message\ResponseInterface
     {
-        $response = $this->responseData->sendSuccess();
-        $userContainer = new UserContainer();
-        $userContainer->setUniqueId(BaseService::$project);
-        $auth = $this->container->get(HttpHeaderAuth::class);
-        // 得到路由
-        [$controller, $action]=Helper::getControllerAction($request);
+        $dispatched = $request->getAttribute(Dispatched::class);
 
-        //  FreeLogin 免登录
-        if (!Helper::hasAnnotation(FreeLogin::class,$controller,$action)) {
-            if (!$auth->authenticate($userContainer, $request, $response)) {
+        if (!$dispatched instanceof Dispatched) {
+            throw new ServerException(sprintf('The dispatched object is not a %s object.', Dispatched::class));
+        }
 
-                // 待
-            }
-            // 设置对象
-            UserHelper::setUserContainer($userContainer);
+        if ($this->shouldHandle($dispatched)) {
+
+            $this->authenticate($request);
         }
 
         return $handler->handle($request);
+    }
 
+
+    public function authenticate(ServerRequestInterface $request)
+    {
+        $userContainer = new UserContainer();
+        $userContainer->setUniqueId($this->project);
+        $auth = $this->container->get($this->authManager->getAuthClass($this->project));
+        $dispatched = $request->getAttribute(Dispatched::class);
+        [$requestHandler, $method] = $this->prepareHandler($dispatched->handler->callback);
+        // annotation: FreeLogin
+        if (!$this->checkFreeLogin($requestHandler, $method)) {
+            if (!$auth->authenticate($userContainer, $request, $this->response)) {
+                throw new AuthenticationException('no authenticate ~');
+            }
+            // login user
+            AuthHelper::setUserContainer($userContainer);
+        }
+    }
+
+    /**
+     * Is free login
+     *
+     * @param $requestHandler
+     * @param $method
+     *
+     * @return bool
+     */
+    public function checkFreeLogin($requestHandler, $method)
+    {
+        return AuthHelper::hasAnnotation(FreeLogin::class, $requestHandler, $method);
+    }
+
+    /**
+     * @param array|string $handler
+     *
+     * @see \Hyperf\HttpServer\CoreMiddleware::prepareHandler()
+     */
+    protected function prepareHandler($handler): array
+    {
+        if (is_string($handler)) {
+            if (strpos($handler, '@') !== false) {
+                return explode('@', $handler);
+            }
+            $array = explode('::', $handler);
+            return [$array[0], $array[1] ?? null];
+        }
+        if (is_array($handler) && isset($handler[0], $handler[1])) {
+            return $handler;
+        }
+        throw new \RuntimeException('Handler not exist.');
+    }
+
+    protected function shouldHandle(Dispatched $dispatched): bool
+    {
+        return $dispatched->status === Dispatcher::FOUND && !$dispatched->handler->callback instanceof Closure;
     }
 }

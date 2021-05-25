@@ -6,7 +6,7 @@
  * Time: 15:00
  */
 
-namespace Vartruexuan\HyperfHttpAuth;
+namespace Vartruexuan\HyperfHttpAuth\User;
 
 
 interface IdentityInterface

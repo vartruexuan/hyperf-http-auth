@@ -27,6 +27,14 @@ class ConfigProvider
                     ],
                 ],
             ],
+            'publish' => [
+                [
+                    'id' => 'config',
+                    'description' => 'http auth',
+                    'source' => __DIR__ . '/../publish/hyperf_http_auth.php',
+                    'destination' => BASE_PATH . '/config/autoload/hyperf_http_auth.php',
+                ],
+            ],
         ];
     }
 }

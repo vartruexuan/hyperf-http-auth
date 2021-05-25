@@ -14,7 +14,7 @@ namespace Vartruexuan\HyperfHttpAuth\Exception;
 use Hyperf\Server\Exception\ServerException;
 use Throwable;
 
-class HttpAuthException extends ServerException
+class AuthenticationException extends ServerException
 {
 
 }
