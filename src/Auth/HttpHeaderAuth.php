@@ -46,7 +46,6 @@ class HttpHeaderAuth implements AuthInterface
     }
 
     /**
-     * @author:郭昭璇
      * @param \Vartruexuan\HyperfHttpAuth\User\UserContainer $user
      * @param \Psr\Http\Message\ServerRequestInterface       $request
      * @param \Psr\Http\Message\ResponseInterface            $response

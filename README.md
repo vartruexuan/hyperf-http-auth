@@ -22,7 +22,6 @@ class User implements IdentityInterface
     /**
      * 获取用户对象
      *
-     * @author:郭昭璇
      * @param $id
      *
      * @return \App\Model\User
@@ -35,7 +34,6 @@ class User implements IdentityInterface
 
     /**
      *
-     * @author:郭昭璇
      * @return mixed
      */
     public function getId()
