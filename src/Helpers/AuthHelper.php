@@ -14,25 +14,34 @@ use Vartruexuan\HyperfHttpAuth\User\UserContainer;
 use Psr\Http\Message\ServerRequestInterface;
 use Hyperf\Di\Annotation\AnnotationCollector;
 use Hyperf\HttpServer\Router\Dispatched;
+use FastRoute\Dispatcher;
 
 class AuthHelper
 {
 
+
+
     /**
-     * 获取控制器|方法
+     * get Controller action.
      *
-     * @param \Psr\Http\Message\ServerRequestInterface $request
-     *
-     * @return false|string[]
+     * @param array|string $handler
      */
-    public static function getControllerAction(ServerRequestInterface $request)
+    protected function prepareHandler($handler): array
     {
-        $route = $request->getAttribute(Dispatched::class)->handler->callback;
-        if(is_string($route)){
-            return explode('@', $route);
+        // $request->getAttribute(Dispatched::class)->handler->callback
+        if (is_string($handler)) {
+            if (strpos($handler, '@') !== false) {
+                return explode('@', $handler);
+            }
+            $array = explode('::', $handler);
+            return [$array[0], $array[1] ?? null];
         }
-        return $route;
+        if (is_array($handler) && isset($handler[0], $handler[1])) {
+            return $handler;
+        }
+        throw new \RuntimeException('Handler not exist.');
     }
+
 
     /**
      * 方法是否含有对应注解
@@ -72,7 +81,7 @@ class AuthHelper
      */
     public static function setUserContainer(UserContainer $userContainer)
     {
-       return Context::set(UserContainer::class,$userContainer);
+        return Context::set(UserContainer::class,$userContainer);
     }
 
 }

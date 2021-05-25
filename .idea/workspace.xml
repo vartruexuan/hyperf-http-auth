@@ -20,19 +20,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="63a23767-7c19-4b48-9f69-4a1cf64a2948" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/hyperf-http-auth.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Helpers/Helper.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Helpers/AuthHelper.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Helpers/UserHelper.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Middleware/AuthMiddleware.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Middleware/AuthMiddleware.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Store/DriverInterface.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Store/MemcacheDriver.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Store/RedisDriver.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
