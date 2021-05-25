@@ -2,46 +2,21 @@
 /**
  * Created by
  * User: GuoZhaoXuan
- * Date: 2021/1/4
- * Time: 10:35
+ * Date: 2021/3/4
+ * Time: 15:25
  */
-declare(strict_types=1);
 
 namespace Vartruexuan\HyperfHttpAuth\Helpers;
 
 
-use Hyperf\Utils\ApplicationContext;
-use Hyperf\HttpServer\Router\Dispatched;
+use Hyperf\Utils\Context;
+use Vartruexuan\HyperfHttpAuth\User\UserContainer;
 use Psr\Http\Message\ServerRequestInterface;
-use Hyperf\Redis\RedisFactory;
-use Hyperf\Redis\Redis;
 use Hyperf\Di\Annotation\AnnotationCollector;
-use App\Annotation\FreeLogin;
+use Hyperf\HttpServer\Router\Dispatched;
 
-class Helper
+class AuthHelper
 {
-
-
-    /**
-     * 验证数组是否含有指定成员
-     *
-     * @param array $haveArray 指定成员
-     * @param array $fromArray 寻找数组
-     * @param bool  $isAnd     true:必须含有所有成员， false 含有一个及以上成员
-     *
-     * @return bool
-     */
-    public static function haveArray(array $haveArray, array $fromArray, $isAnd = true)
-    {
-        $haveCount = count($haveArray);
-        $intersect = array_intersect($haveArray, $fromArray);
-
-        if ($isAnd) {
-            return count($intersect) == $haveCount;
-        } else {
-            return count($intersect) > 0;
-        }
-    }
 
     /**
      * 获取控制器|方法
@@ -77,15 +52,27 @@ class Helper
     }
 
     /**
-     * 返回redis对象
+     * 获取用户容器对象
      *
-     * @param string $poolName
+     * @param null $coroutineId
      *
-     * @return \Hyperf\Redis\Redis
+     * @return UserContainer|mixed|null
      */
-    public static function redis($poolName = 'default'): Redis
+    public static function getUserContainer($coroutineId = null)
     {
-        return ApplicationContext::getContainer()->get(RedisFactory::class)->get($poolName);
+        return Context::get(UserContainer::class, new UserContainer(), $coroutineId);
+    }
+
+    /**
+     * 设置容器
+     *
+     * @param UserContainer $userContainer
+     *
+     * @return mixed
+     */
+    public static function setUserContainer(UserContainer $userContainer)
+    {
+       return Context::set(UserContainer::class,$userContainer);
     }
 
 }
