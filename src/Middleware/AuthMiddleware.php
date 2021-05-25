@@ -20,6 +20,7 @@ use Hyperf\HttpServer\Router\Dispatched;
 use Hyperf\Server\Exception\ServerException;
 use Hyperf\Di\ReflectionManager;
 use Hyperf\Validation\UnauthorizedException;
+use Vartruexuan\HyperfHttpAuth\AuthManage;
 
 /**
  * 用户权限验证
@@ -39,10 +40,13 @@ class AuthMiddleware implements MiddlewareInterface
 
     protected $project = 'default';
 
-    public function __construct(ContainerInterface $container, \Hyperf\HttpServer\Contract\ResponseInterface $response)
+    protected $authManager;
+
+    public function __construct(ContainerInterface $container, \Hyperf\HttpServer\Contract\ResponseInterface $response, AuthManage $authManager)
     {
         $this->container = $container;
         $this->response = $response;
+        $this->authManager = $authManager;
     }
 
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): \Psr\Http\Message\ResponseInterface
@@ -64,14 +68,13 @@ class AuthMiddleware implements MiddlewareInterface
 
     public function authenticate(ServerRequestInterface $request)
     {
-
         $userContainer = new UserContainer();
         $userContainer->setUniqueId($this->project);
-        $auth = $this->container->get(HttpHeaderAuth::class);
+        $auth = $this->container->get($this->authManager->getAuthClass($this->project));
         $dispatched = $request->getAttribute(Dispatched::class);
         [$requestHandler, $method] = $this->prepareHandler($dispatched->handler->callback);
         // annotation: FreeLogin
-        if (!AuthHelper::hasAnnotation(FreeLogin::class, $requestHandler, $method)) {
+        if (!$this->checkFreeLogin($requestHandler, $method)) {
             if (!$auth->authenticate($userContainer, $request, $this->response)) {
                 throw new AuthenticationException('no authenticate ~');
             }
@@ -80,6 +83,18 @@ class AuthMiddleware implements MiddlewareInterface
         }
     }
 
+    /**
+     * Is free login
+     *
+     * @param $requestHandler
+     * @param $method
+     *
+     * @return bool
+     */
+    public function checkFreeLogin($requestHandler, $method)
+    {
+        return AuthHelper::hasAnnotation(FreeLogin::class, $requestHandler, $method);
+    }
 
     /**
      * @param array|string $handler

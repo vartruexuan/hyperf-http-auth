@@ -11,6 +11,7 @@ namespace Vartruexuan\HyperfHttpAuth\User;
 use Hyperf\Di\Annotation\Inject;
 use Hyperf\Utils\Str;
 use Psr\Container\ContainerInterface;
+use Vartruexuan\HyperfHttpAuth\AuthManage;
 
 class UserContainer
 {
@@ -33,6 +34,13 @@ class UserContainer
      * @var \Hyperf\Cache\Cache
      */
     public $cache;
+
+    /**
+     * @Inject
+     *
+     * @var AuthManage
+     */
+    public $authManage;
 
     public function __construct()
     {
@@ -189,17 +197,7 @@ class UserContainer
         return $this->findIdentityById($id);
     }
 
-    /**
-     * 获取token key
-     *
-     * @param $token
-     *
-     * @return string
-     */
-    public function getAccessTokenKey($token)
-    {
-        return $this->uniqueId . ':auth:token:' . $token;
-    }
+
 
     /**
      * 获取缓存对象
@@ -207,9 +205,7 @@ class UserContainer
      */
     public function getCache()
     {
-
         return $this->cache;
-        //return Helper::redis();
     }
 
     /**
@@ -221,7 +217,7 @@ class UserContainer
      */
     public function setConfig()
     {
-        $config=config('hyperf_http_auth.'.$this->uniqueId . '.user', []);
+        $config=$this->authManage->getConfig($this->uniqueId.'.user',[]);
         if (is_array($config)) {
             foreach ($config as $key => $val) {
                 if (property_exists($this, $key)) {
@@ -231,7 +227,6 @@ class UserContainer
         }
         return $this;
     }
-
 
     /**
      * 生成token
@@ -251,6 +246,18 @@ class UserContainer
     public function getAccessToken(): string
     {
         return $this->accessToken;
+    }
+
+    /**
+     * 获取token key
+     *
+     * @param $token
+     *
+     * @return string
+     */
+    public function getAccessTokenKey($token)
+    {
+        return $this->uniqueId . ':auth:token:' . $token;
     }
 
 }

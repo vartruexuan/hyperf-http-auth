@@ -19,8 +19,6 @@ use FastRoute\Dispatcher;
 class AuthHelper
 {
 
-
-
     /**
      * get Controller action.
      *
@@ -52,13 +50,14 @@ class AuthHelper
      *
      * @return bool
      */
-    public static function hasAnnotation(string $annotation,string $class, string $method)
+    public static function hasAnnotation(string $annotation, string $class, string $method)
     {
         $classAnnotation = AnnotationCollector::getClassAnnotation($class, $annotation);
         $methodAnnotation = AnnotationCollector::getClassMethodAnnotation($class, $method);
-        $methodAnnotation=$methodAnnotation ? array_keys($methodAnnotation) : [];
-        return $classAnnotation || in_array($annotation,$methodAnnotation );
+        $methodAnnotation = $methodAnnotation ? array_keys($methodAnnotation) : [];
+        return $classAnnotation || in_array($annotation, $methodAnnotation);
     }
+
 
     /**
      * 获取用户容器对象
@@ -81,7 +80,7 @@ class AuthHelper
      */
     public static function setUserContainer(UserContainer $userContainer)
     {
-        return Context::set(UserContainer::class,$userContainer);
+        return Context::set(UserContainer::class, $userContainer);
     }
 
 }

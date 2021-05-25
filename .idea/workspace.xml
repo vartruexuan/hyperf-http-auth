@@ -20,7 +20,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="63a23767-7c19-4b48-9f69-4a1cf64a2948" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/AuthManage.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/publish/hyperf_http_auth.php" beforeDir="false" afterPath="$PROJECT_DIR$/publish/hyperf_http_auth.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Helpers/AuthHelper.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Helpers/AuthHelper.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Middleware/AuthMiddleware.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Middleware/AuthMiddleware.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/User/UserContainer.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/User/UserContainer.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -216,10 +222,10 @@
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="595" y="285" key="MultipleFileMergeDialog/0.0.1920.1050@0.0.1920.1050" timestamp="1617703940768" />
-    <state x="739" y="245" key="NewPhpClassDialog" timestamp="1621828433179">
+    <state x="739" y="245" key="NewPhpClassDialog" timestamp="1621923410080">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state x="739" y="245" key="NewPhpClassDialog/0.0.1920.1050@0.0.1920.1050" timestamp="1621828433179" />
+    <state x="739" y="245" key="NewPhpClassDialog/0.0.1920.1050@0.0.1920.1050" timestamp="1621923410080" />
     <state x="662" y="257" width="596" height="536" key="find.popup" timestamp="1621845690027">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
