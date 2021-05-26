@@ -62,9 +62,8 @@ return [
     'default' => [
         // 用户权限配置
         "user"=>[
-            'identityClass'=>'App\Model\User', // 指定用户model
-			
-			// 目前只支持 HttpHeaderAuth 您也可以自己重构，实现Vartruexuan\HyperfHttpAuth\Auth\AuthInterface 这里指定您自己的类即可
+            'identityClass'=>'App\Model\User', // 指定用户model	
+	// 目前只支持 HttpHeaderAuth 您也可以自己重构，实现Vartruexuan\HyperfHttpAuth\Auth\AuthInterface 这里指定您自己的类即可
             'authClass'=>\Vartruexuan\HyperfHttpAuth\Auth\HttpHeaderAuth::class, // 默认HttpHeaderAuth
             'expire'=>24*3600, // 过期时长
         ],
