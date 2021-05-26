@@ -62,9 +62,8 @@ return [
     'default' => [
         // 用户权限配置
         "user"=>[
-            'identityClass'=>'App\Model\User', // 指定用户model
-			
-			// 目前只支持 HttpHeaderAuth 您也可以自己重构，实现Vartruexuan\HyperfHttpAuth\Auth\AuthInterface 这里指定您自己的类即可
+            'identityClass'=>'App\Model\User', // 指定用户model	
+	// 目前只支持 HttpHeaderAuth 您也可以自己重构，实现Vartruexuan\HyperfHttpAuth\Auth\AuthInterface 这里指定您自己的类即可
             'authClass'=>\Vartruexuan\HyperfHttpAuth\Auth\HttpHeaderAuth::class, // 默认HttpHeaderAuth
             'expire'=>24*3600, // 过期时长
         ],
@@ -76,7 +75,7 @@ return [
 
 
 ### 设置中间件 （这里展示配置方式/路由方式，具体可参考 [hyperf](https://hyperf.wiki/2.1/#/zh-cn/middleware/middleware) 官方文档）
-1.配置方式 config/autoload/
+1.配置方式 config/autoload/middlewares.php
 ```php
 <?php
 
@@ -186,7 +185,7 @@ class IndexController extends BaseController
 
 ```
 
-### 注解 免登录 FreeLogin, 目前只支持注解方式（后期加上配置方式）
+### 免登录：目前只支持注解方式FreeLogin（后期加上配置方式），类注解应用于当前控制器, method 注解只应用于当前method
 
 ```php
 <?php
@@ -199,9 +198,7 @@ use Hyperf\Di\Annotation\Inject;
 use Vartruexuan\HyperfHttpAuth\Annotation\FreeLogin;
 
 /**
- * Class IndexController
  * @Freelogin
- * @package App\Controller
  */
 class IndexController extends BaseController
 {
