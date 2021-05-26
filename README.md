@@ -75,7 +75,7 @@ return [
 
 
 ### 设置中间件 （这里展示配置方式/路由方式，具体可参考 [hyperf](https://hyperf.wiki/2.1/#/zh-cn/middleware/middleware) 官方文档）
-1.配置方式 config/autoload/
+1.配置方式 config/autoload/middlewares.php
 ```php
 <?php
 
