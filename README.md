@@ -185,7 +185,7 @@ class IndexController extends BaseController
 
 ```
 
-### 注解 免登录 FreeLogin, 目前只支持注解方式（后期加上配置方式）
+### 免登录：目前只支持注解方式FreeLogin（后期加上配置方式），类注解应用于当前控制器, method 注解只应用于当前method
 
 ```php
 <?php
