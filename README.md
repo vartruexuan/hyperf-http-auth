@@ -198,9 +198,7 @@ use Hyperf\Di\Annotation\Inject;
 use Vartruexuan\HyperfHttpAuth\Annotation\FreeLogin;
 
 /**
- * Class IndexController
  * @Freelogin
- * @package App\Controller
  */
 class IndexController extends BaseController
 {
