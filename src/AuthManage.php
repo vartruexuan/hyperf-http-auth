@@ -37,9 +37,9 @@ class AuthManage
      */
     public function getAuthClass($uniqueId = 'default')
     {
-        $config = $this->getConfig($uniqueId);
+        $config = $this->getConfig($uniqueId . '.user');
         $authClass = $config['authClass'] ?? null;
-        if (!class_exists($authClass) || !in_array(AuthInterface::class, class_implements($authClass))) {
+        if (!$authClass || !class_exists($authClass) || !in_array(AuthInterface::class, class_implements($authClass))) {
             $authClass = HttpHeaderAuth::class;
         }
         return $authClass;
