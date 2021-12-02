@@ -152,7 +152,9 @@ class IndexController extends BaseController
     {
         $username = $this->request->post('username', '');
         $password = $this->request->post('password', '');
-        $identity=User::validatePassword($username,$password);
+        if(!$identity=User::validatePassword($username,$password)){
+		return $this->sendError("密码错误");
+	}
         // 授权登录信息
         $userContainer = AuthHelper::getUserContainer();
         $userContainer->login($identity);
